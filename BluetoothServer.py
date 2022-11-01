@@ -43,7 +43,7 @@ while True:
             autoPilotState=not autoPilotState          
             if autoPilotState:
                 if autoPilotProcess==None:
-                    autoPilotProcess=subprocess.Popen("./Histogram")
+                    autoPilotProcess=subprocess.Popen("./AutoPilot")
                     pAutoPilotProcess= psutil.Process(autoPilotProcess)
                 else:
                     pAutoPilotProcess.resume()
