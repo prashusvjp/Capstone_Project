@@ -1,5 +1,5 @@
 from bluetooth import *
-import subprocess, psutil
+import subprocess
 import RPi.GPIO as io
 
 autoPilotState=False
@@ -11,7 +11,6 @@ for i in pins:
 
 
 autoPilotProcess=None
-pAutoPilotProcess=None
 
 server_sock=BluetoothSocket( RFCOMM )
 server_sock.bind(("",PORT_ANY))
@@ -42,16 +41,9 @@ while True:
         if data==11:
             autoPilotState=not autoPilotState          
             if autoPilotState:
-                if autoPilotProcess==None:
-                    autoPilotProcess=subprocess.Popen("./AutoPilot")
-                    pAutoPilotProcess= psutil.Process(autoPilotProcess)
-                else:
-                    pAutoPilotProcess.resume()
+                autoPilotProcess=subprocess.Popen("./AutoPilot")         
             else:
-                pAutoPilotProcess.suspend()
-        elif data==15:
-            autoPilotProcess=False
-            pAutoPilotProcess.kill()
+                autoPilotProcess.kill()
         else:
             data=format(data,"b").zfill(4)
             print(data)
