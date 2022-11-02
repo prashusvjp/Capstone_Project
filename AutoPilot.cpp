@@ -54,6 +54,7 @@ void Capture()
     cvtColor(frame, frame_Object, COLOR_BGR2RGB);
     cvtColor(frame, frame_Traffic, COLOR_BGR2RGB);
     cvtColor(frame, frame, COLOR_BGR2RGB);
+    
 }
 
 void Perspective()
@@ -295,12 +296,17 @@ void movements()
 	cout<<"Left3"<<endl;
     }
     
-    if (dist_Stop > 5 && dist_Stop < 20)
+    if (dist_Stop > 5 && dist_Stop < 25)
     {
 	digitalWrite(21, 0);
 	digitalWrite(22, 0);    //decimal = 8
 	digitalWrite(23, 0);
 	digitalWrite(24, 1);
+	delay(5000);
+	digitalWrite(21, 0);
+	digitalWrite(22, 0);    //decimal = 0
+	digitalWrite(23, 0);
+	digitalWrite(24, 0);
 	cout<<"Stop Sign"<<endl;
 	dist_Stop = 0;
 	
@@ -319,8 +325,21 @@ void movements()
 	goto Object;
     }
     
+    if(dist_Traffic > 5 && dist_Traffic < 25)
+    {
+	digitalWrite(21, 1);
+	digitalWrite(22, 1);	//decimal 11
+	digitalWrite(23, 0);
+	digitalWrite(24, 1);
+	cout<<"Traffic Light"<<endl;
+	dist_Traffic = 0;
+	
+	goto Traffic;
+    }
+    
     Stop_Sign:
     Object:
+    Traffic:
     
     
    /*if (laneEnd > 3000)
@@ -406,7 +425,7 @@ int main(int argc,char **argv)
     resizeWindow("orignal", 320 , 140);
     imshow("orignal", frame);
     
-    namedWindow("Perspective", WINDOW_KEEPRATIO);
+    /*namedWindow("Perspective", WINDOW_KEEPRATIO);
     moveWindow("Perspective", 320  , 100);
     resizeWindow("Perspective", 320, 140);
     imshow("Perspective", framePers);
@@ -414,14 +433,14 @@ int main(int argc,char **argv)
     namedWindow("Final", WINDOW_KEEPRATIO);
     moveWindow("Final", 640, 100);
     resizeWindow("Final", 320, 140);
-    imshow("Final", frameFinal);
+    imshow("Final", frameFinal);*/
     
-    namedWindow("Stop Sign", WINDOW_KEEPRATIO);
+    /*namedWindow("Stop Sign", WINDOW_KEEPRATIO);
     moveWindow("Stop Sign", 320, 100);
     resizeWindow("Stop Sign", 320, 140);
     imshow("Stop Sign", ROI_Stop);
     
-    /*namedWindow("Object", WINDOW_KEEPRATIO);
+    namedWindow("Object", WINDOW_KEEPRATIO);
     moveWindow("Object", 320, 100);
     resizeWindow("Object", 320, 140);
     imshow("Object", ROI_Object);*/
