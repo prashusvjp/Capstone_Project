@@ -325,10 +325,10 @@ void movements()
 	goto Object;
     }
     
-    if(dist_Traffic > 5 && dist_Traffic < 25)
+    if(dist_Traffic > 5 && dist_Traffic < 30)
     {
-	digitalWrite(21, 1);
-	digitalWrite(22, 1);	//decimal 11
+	digitalWrite(21, 0);
+	digitalWrite(22, 0);	//decimal 11
 	digitalWrite(23, 0);
 	digitalWrite(24, 1);
 	cout<<"Traffic Light"<<endl;
@@ -364,7 +364,7 @@ void movements()
     {
        ss.str(" ");
        ss.clear();
-       ss<<"Result = "<<Result<<"bMove Right";
+       ss<<"Result = "<<Result<<" Move Right";
        putText(frame, ss.str(), Point2f(1,50), 0,1, Scalar(0,0,255), 2);
     
      }

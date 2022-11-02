@@ -30,6 +30,7 @@ void Data()
 }
 
 
+
 void setup() {
 
 pinMode(EnableL, OUTPUT);      
@@ -84,6 +85,7 @@ void Stop()
   analogWrite(EnableR,0);
   
 }
+ 
 
 void Left1()
 {
@@ -174,6 +176,11 @@ void indicateRightTurn(){
     }
 }
 
+void Traffic(){
+  Stop();
+  delay(2000);  
+}
+
 void loop() 
 {
   // if(j > 25000)
@@ -196,6 +203,7 @@ void loop()
     case 8:Stop();break;
     case 9:indicateLeftTurn();break;
     case 10:indicateRightTurn();break;
+    case 11:Traffic();break;
     default:Stop();break;
   }
   
@@ -371,4 +379,6 @@ void Lane_Change()
   analogWrite(EnableL, 150);
   analogWrite(EnableR, 150);
   delay(500);
+
+
 }*/
