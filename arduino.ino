@@ -17,6 +17,8 @@ const int D2 = 2;       //Raspberry pin 23
 const int D3 = 3;       //Raspberry pin 24    MSB
 
 int a,b,c,d,data=8;
+void LaneChange();
+void Object();
 
 void Data()
 {
@@ -177,8 +179,7 @@ void indicateRightTurn(){
 }
 
 void Traffic(){
-  Stop();
-  delay(2000);  
+  Stop(); 
 }
 
 void loop() 
@@ -192,13 +193,27 @@ void loop()
 
   Data();
   switch(data){
-    case 0:Forward();break;
-    case 1:Right1();break;
-    case 2:Right2();break;
-    case 3:Right3();break;
-    case 4:Left1();break;
-    case 5:Left2();break;
-    case 6:Left3();break;
+    case 15:Forward();
+      j+=(i>0)?1:0;
+      break;
+    case 1:Right1();
+      j+=(i>0)?1:0;
+      break;
+    case 2:Right2();
+      j+=(i>0)?1:0;
+      break;
+    case 3:Right3();
+      j+=(i>0)?1:0;
+      break;
+    case 4:Left1();
+      j+=(i>0)?1:0;
+      break;
+    case 5:Left2();
+      j+=(i>0)?1:0;
+      break;
+    case 6:Left3();
+      j+=(i>0)?1:0;
+      break;
     case 7:Backward();break;
     case 8:Stop();break;
     case 9:indicateLeftTurn();break;
@@ -206,7 +221,11 @@ void loop()
     case 11:Traffic();break;
     default:Stop();break;
   }
-  
+  if(data<7 || data==15){
+    if(i>0){
+      j+=1;
+    }
+  }
 }
 
 /*void UTurn()
@@ -269,7 +288,7 @@ void loop()
   analogWrite(EnableL, 150);
   analogWrite(EnableR, 150);
   delay(300);
-}
+}*/
 
 
 void Object()
@@ -380,5 +399,4 @@ void Lane_Change()
   analogWrite(EnableR, 150);
   delay(500);
 
-
-}*/
+}
