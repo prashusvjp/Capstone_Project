@@ -296,20 +296,16 @@ void movements()
 	cout<<"Left3"<<endl;
     }
     
-    if (dist_Stop > 5 && dist_Stop < 25)
+    if (dist_Stop > 5 && dist_Stop < 20)
     {
 	digitalWrite(21, 0);
 	digitalWrite(22, 0);    //decimal = 8
 	digitalWrite(23, 0);
 	digitalWrite(24, 1);
-	delay(5000);
-	digitalWrite(21, 0);
-	digitalWrite(22, 0);    //decimal = 0
-	digitalWrite(23, 0);
-	digitalWrite(24, 0);
 	cout<<"Stop Sign"<<endl;
 	dist_Stop = 0;
-	
+
+	delay(5000);
 	goto Stop_Sign;
     }
     
@@ -325,7 +321,7 @@ void movements()
 	goto Object;
     }
     
-    if(dist_Traffic > 5 && dist_Traffic < 30)
+    if(dist_Traffic > 5 && dist_Traffic < 20)
     {
 	digitalWrite(21, 0);
 	digitalWrite(22, 0);	//decimal 11

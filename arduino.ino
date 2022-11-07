@@ -221,11 +221,6 @@ void loop()
     case 11:Traffic();break;
     default:Stop();break;
   }
-  if(data<7 || data==15){
-    if(i>0){
-      j+=1;
-    }
-  }
 }
 
 /*void UTurn()
@@ -290,7 +285,7 @@ void loop()
   delay(300);
 }*/
 
-
+/*
 void Object()
 {
 
@@ -399,4 +394,4 @@ void Lane_Change()
   analogWrite(EnableR, 150);
   delay(500);
 
-}
+}*/
