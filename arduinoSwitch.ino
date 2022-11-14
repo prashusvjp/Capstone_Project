@@ -282,8 +282,8 @@ void Object()
   digitalWrite(LowL, HIGH);
   digitalWrite(HighR, HIGH);         //right
   digitalWrite(LowR, LOW);
-  analogWrite(EnableL, 255);
-  analogWrite(EnableR, 255);
+  analogWrite(EnableL, 250);
+  analogWrite(EnableR, 250);
   delay(2500);
   analogWrite(EnableL, 0);               //stop
   analogWrite(EnableR, 0);
@@ -301,9 +301,9 @@ void Object()
   digitalWrite(LowL, HIGH);
   digitalWrite(HighR, HIGH);         //right
   digitalWrite(LowR, LOW);
-  analogWrite(EnableL, 255);
-  analogWrite(EnableR, 255);
-  delay(2500);
+  analogWrite(EnableL, 250);
+  analogWrite(EnableR, 250);
+  delay(2000);
 
   analogWrite(EnableL, 0);           //stop
   analogWrite(EnableR, 0);
