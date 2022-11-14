@@ -293,9 +293,42 @@ void Object()
   digitalWrite(LowL, HIGH);
   digitalWrite(HighR, LOW);       // forward
   digitalWrite(LowR, HIGH);
-  analogWrite(EnableL, 150);
-  analogWrite(EnableR, 150);
-  delay(500);
+  analogWrite(EnableL, 250);
+  analogWrite(EnableR, 250);
+  delay(2000);
+
+  digitalWrite(HighL, LOW);
+  digitalWrite(LowL, HIGH);
+  digitalWrite(HighR, HIGH);         //right
+  digitalWrite(LowR, LOW);
+  analogWrite(EnableL, 255);
+  analogWrite(EnableR, 255);
+  delay(2500);
+
+  analogWrite(EnableL, 0);           //stop
+  analogWrite(EnableR, 0);
+  delay(200);
+
+  digitalWrite(HighL, LOW);
+  digitalWrite(LowL, HIGH);
+  digitalWrite(HighR, LOW);       // forward
+  digitalWrite(LowR, HIGH);
+  analogWrite(EnableL, 250);
+  analogWrite(EnableR, 250);
+  delay(2000);
+
+  analogWrite(EnableL, 0);           //stop
+  analogWrite(EnableR, 0);
+  delay(200);
+
+  digitalWrite(HighL, HIGH);
+  digitalWrite(LowL, LOW);
+  digitalWrite(HighR, LOW);
+  digitalWrite(LowR, HIGH);        //left
+  analogWrite(EnableL, 250);
+  analogWrite(EnableR, 250);
+  delay(2500);
+
    i  = i+1;
 }
 void Lane_Change()
