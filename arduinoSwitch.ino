@@ -284,7 +284,7 @@ void Object()
   digitalWrite(LowR, LOW);
   analogWrite(EnableL, 255);
   analogWrite(EnableR, 255);
-  delay(500);
+  delay(2500);
   analogWrite(EnableL, 0);               //stop
   analogWrite(EnableR, 0);
   delay(1000);
