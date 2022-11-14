@@ -8,11 +8,11 @@ const int EnableR = 10;
 const int HighR = 8;       //RIGHT SIDE MOTOR
 const int LowR =9;
 
-const bool Left_Indicator_State=false;
-const bool Right_Indicator_State=false;
+bool Left_Indicator_State=false;
+bool Right_Indicator_State=false;
 
-const int D0 = 12;       //Raspberry pin 21    LSB
-const int D1 = 13;       //Raspberry pin 22
+const int D0 = 13;       //Raspberry pin 21    LSB
+const int D1 = 12;       //Raspberry pin 22
 const int D2 = 2;       //Raspberry pin 23
 const int D3 = 3;       //Raspberry pin 24    MSB
 
@@ -177,26 +177,27 @@ void indicateRightTurn(){
 
 void loop() 
 {
-//   if(j > 25000)
-//   {
-//     Lane_Change();
-//     i = 0;
-//     j = 0;
-//   }
+  if(j > 60000)
+  {
+    Lane_Change();
+    i = 0;
+    j = 0;
+  }
 
   Data();
   switch(data){
-    case 0:Forward();break;
-    case 1:Right1();break;
-    case 2:Right2();break;
-    case 3:Right3();break;
-    case 4:Left1();break;
-    case 5:Left2();break;
-    case 6:Left3();break;
+    case 15:Forward();j=j+1;break;
+    case 1:Right1();j=j+1;break;
+    case 2:Right2();j=j+1;break;
+    case 3:Right3();j=j+1;break;
+    case 12:Left1();j=j+1;break;
+    case 5:Left2();j=j+1;break;
+    case 6:Left3();j=j+1;break;
     case 7:Backward();break;
     case 8:Stop();break;
     case 9:indicateLeftTurn();break;
     case 10:indicateRightTurn();break;
+    case 13:Object();break;
     default:Stop();break;
   }
   
@@ -207,15 +208,12 @@ void loop()
   analogWrite(EnableL, 0);
   analogWrite(EnableR, 0);
   delay(400);
-
   analogWrite(EnableL, 250);
   analogWrite(EnableR, 250);    //forward
   delay(1000);
-
   analogWrite(EnableL, 0);
   analogWrite(EnableR, 0);
   delay(400);
-
   digitalWrite(HighL, HIGH);
   digitalWrite(LowL, LOW);
   digitalWrite(HighR, LOW);   //   left
@@ -223,11 +221,9 @@ void loop()
   analogWrite(EnableL, 255);
   analogWrite(EnableR, 255);
   delay(700);
-
   analogWrite(EnableL, 0);
   analogWrite(EnableR, 0);
   delay(400);
-
   digitalWrite(HighL, LOW);
   digitalWrite(LowL, HIGH);
   digitalWrite(HighR, LOW);   // forward
@@ -235,11 +231,9 @@ void loop()
   analogWrite(EnableL, 255);
   analogWrite(EnableR, 255);
   delay(900);
-
   analogWrite(EnableL, 0);
   analogWrite(EnableR, 0);
   delay(400);
-
   digitalWrite(HighL, HIGH);
   digitalWrite(LowL, LOW);
   digitalWrite(HighR, LOW);    //left
@@ -247,14 +241,9 @@ void loop()
   analogWrite(EnableL, 255);
   analogWrite(EnableR, 255);
   delay(700);
-
-
   analogWrite(EnableL, 0);
   analogWrite(EnableR, 0);
   delay(1000);
-
-
-
   digitalWrite(HighL, LOW);
   digitalWrite(LowL, HIGH);
   digitalWrite(HighR, LOW);
@@ -262,28 +251,23 @@ void loop()
   analogWrite(EnableL, 150);
   analogWrite(EnableR, 150);
   delay(300);
-}
-
+}*/
 
 void Object()
 {
-
   analogWrite(EnableL, 0);
   analogWrite(EnableR, 0);            //stop
   delay(1000);
-
   digitalWrite(HighL, HIGH);
   digitalWrite(LowL, LOW);
   digitalWrite(HighR, LOW);
   digitalWrite(LowR, HIGH);        //left
   analogWrite(EnableL, 250);
   analogWrite(EnableR, 250);
-  delay(500);
-
+  delay(2500);
   analogWrite(EnableL, 0);
   analogWrite(EnableR, 0);            //stop
   delay(200);
-
   digitalWrite(HighL, LOW);
   digitalWrite(LowL, HIGH);           //forward
   digitalWrite(HighR, LOW);
@@ -291,11 +275,9 @@ void Object()
   analogWrite(EnableL, 255);
   analogWrite(EnableR, 255);
   delay(1000);
-
   analogWrite(EnableL, 0);           //stop
   analogWrite(EnableR, 0);
   delay(200);
-
   digitalWrite(HighL, LOW);
   digitalWrite(LowL, HIGH);
   digitalWrite(HighR, HIGH);         //right
@@ -303,11 +285,9 @@ void Object()
   analogWrite(EnableL, 255);
   analogWrite(EnableR, 255);
   delay(500);
-
   analogWrite(EnableL, 0);               //stop
   analogWrite(EnableR, 0);
   delay(1000);
-
   
   digitalWrite(HighL, LOW);
   digitalWrite(LowL, HIGH);
@@ -316,18 +296,13 @@ void Object()
   analogWrite(EnableL, 150);
   analogWrite(EnableR, 150);
   delay(500);
-
    i  = i+1;
 }
-
-
 void Lane_Change()
 {
-
   analogWrite(EnableL, 0);
   analogWrite(EnableR, 0);            //stop
   delay(1000);
-
   digitalWrite(HighL, LOW);
   digitalWrite(LowL, HIGH);
   digitalWrite(HighR, HIGH);
@@ -335,11 +310,9 @@ void Lane_Change()
   analogWrite(EnableL, 250);
   analogWrite(EnableR, 250);
   delay(500);
-
   analogWrite(EnableL, 0);
   analogWrite(EnableR, 0);            //stop
   delay(200);
-
   digitalWrite(HighL, LOW);
   digitalWrite(LowL, HIGH);           //forward
   digitalWrite(HighR, LOW);
@@ -347,11 +320,9 @@ void Lane_Change()
   analogWrite(EnableL, 255);
   analogWrite(EnableR, 255);
   delay(800);
-
   analogWrite(EnableL, 0);           //stop
   analogWrite(EnableR, 0);
   delay(200);
-
   digitalWrite(HighL, HIGH);
   digitalWrite(LowL, LOW);
   digitalWrite(HighR, LOW);         //LEFT
@@ -359,11 +330,9 @@ void Lane_Change()
   analogWrite(EnableL, 255);
   analogWrite(EnableR, 255);
   delay(500);
-
   analogWrite(EnableL, 0);               //stop
   analogWrite(EnableR, 0);
   delay(1000);
-
   
   digitalWrite(HighL, LOW);
   digitalWrite(LowL, HIGH);
@@ -372,6 +341,4 @@ void Lane_Change()
   analogWrite(EnableL, 150);
   analogWrite(EnableR, 150);
   delay(500);
-
-
-}*/
+}
