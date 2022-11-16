@@ -53,11 +53,11 @@ void Forward()
 {
   digitalWrite(HighL, LOW);
   digitalWrite(LowL, HIGH);
-  analogWrite(EnableL,255);
+  analogWrite(EnableL,200);
 
   digitalWrite(HighR, LOW);
   digitalWrite(LowR, HIGH);
-  analogWrite(EnableR,255);
+  analogWrite(EnableR,200);
   
 }
 
@@ -198,16 +198,17 @@ void loop()
     case 9:indicateLeftTurn();break;
     case 10:indicateRightTurn();break;
     case 13:Object();break;
+    case 14:UTurn();break;
     default:Stop();break;
   }
   
 }
 
-/*void UTurn()
+void UTurn()
 {
   analogWrite(EnableL, 0);
   analogWrite(EnableR, 0);
-  delay(400);
+  delay(2000);
   analogWrite(EnableL, 250);
   analogWrite(EnableR, 250);    //forward
   delay(1000);
@@ -251,7 +252,7 @@ void loop()
   analogWrite(EnableL, 150);
   analogWrite(EnableR, 150);
   delay(300);
-}*/
+}
 
 void Object()
 {
@@ -264,7 +265,7 @@ void Object()
   digitalWrite(LowR, HIGH);        //left
   analogWrite(EnableL, 250);
   analogWrite(EnableR, 250);
-  delay(2500);
+  delay(2000);
   analogWrite(EnableL, 0);
   analogWrite(EnableR, 0);            //stop
   delay(200);
@@ -284,7 +285,7 @@ void Object()
   digitalWrite(LowR, LOW);
   analogWrite(EnableL, 250);
   analogWrite(EnableR, 250);
-  delay(2500);
+  delay(2000);
   analogWrite(EnableL, 0);               //stop
   analogWrite(EnableR, 0);
   delay(1000);
@@ -293,8 +294,8 @@ void Object()
   digitalWrite(LowL, HIGH);
   digitalWrite(HighR, LOW);       // forward
   digitalWrite(LowR, HIGH);
-  analogWrite(EnableL, 250);
-  analogWrite(EnableR, 250);
+  analogWrite(EnableL, 255);
+  analogWrite(EnableR, 255);
   delay(2000);
 
   digitalWrite(HighL, LOW);
@@ -313,8 +314,8 @@ void Object()
   digitalWrite(LowL, HIGH);
   digitalWrite(HighR, LOW);       // forward
   digitalWrite(LowR, HIGH);
-  analogWrite(EnableL, 250);
-  analogWrite(EnableR, 250);
+  analogWrite(EnableL, 255);
+  analogWrite(EnableR, 255);
   delay(2000);
 
   analogWrite(EnableL, 0);           //stop
@@ -327,7 +328,7 @@ void Object()
   digitalWrite(LowR, HIGH);        //left
   analogWrite(EnableL, 250);
   analogWrite(EnableR, 250);
-  delay(2500);
+  delay(2000);
 
    i  = i+1;
 }
