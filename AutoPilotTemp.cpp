@@ -282,7 +282,7 @@ void movements()
 	digitalWrite(22, 0);	//decimal 13
 	digitalWrite(23, 1);
 	digitalWrite(24, 1);
-	cout<<"carovertake"<<endl;
+	cout<<"Overtake"<<endl;
 	dist_Object = 0;
 	
 	goto Object;
