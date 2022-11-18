@@ -50,6 +50,7 @@ void Capture()
     Camera.retrieve( frame);
     cvtColor(frame, frame_stop, COLOR_BGR2RGB);
     cvtColor(frame, frame_Object, COLOR_BGR2RGB);
+    cvtColor(frame, frame_car, COLOR_BGR2RGB);
     cvtColor(frame, frame_Traffic, COLOR_BGR2RGB);
     cvtColor(frame, frame, COLOR_BGR2RGB);
     
@@ -194,10 +195,18 @@ void Object_detection()
     {
 	printf("Unable to open Object cascade file");
     }
-ROI_Object = frame_Object(Rect(100,50,200,190));
+    if(!Car_Cascade.load("//home//pi//Code//machine//Object Model-1.xml"))
+    {
+	printf("Unable to open Car cascade file");
+    }
+    ROI_Object = frame_Object(Rect(100,50,200,190));
    cvtColor(ROI_Object, gray_Object, COLOR_RGB2GRAY);
    equalizeHist(gray_Object, gray_Object);
    Object_Cascade.detectMultiScale(gray_Object, Object);
+
+   cvtColor(ROI_car, gray_car, COLOR_RGB2GRAY);
+   equalizeHist(gray_car, gray_car);
+   Car_Cascade.detectMultiScale(gray_car, car);
    
    for(int i=0;i<Object.size();i++)
    {
@@ -214,15 +223,31 @@ ROI_Object = frame_Object(Rect(100,50,200,190));
        putText(ROI_Object, ss.str(), Point2f(1,130), 0,1, Scalar(0,0,255), 2);
        
    }
+
+   for(int i=0;i<car.size();i++)
+   {
+      Point P1(car[i].x, car[i].y);
+      Point P2(car[i].x + car[i].width, car[i].y + car[i].height);
+      
+      rectangle(ROI_car, P1, P2, Scalar(0,0,255), 2);
+      putText(ROI_car, "Car", P1, FONT_HERSHEY_PLAIN, 1, Scalar(0, 0, 255,255), 2);
+      dist_car = (-0.48)*(P2.x-P1.x) + 56.6;
+      
+       ss.str(" ");
+       ss.clear();
+       ss<<"D="<<dist_car<<"cm";
+       putText(ROI_car, ss.str(), Point2f(1,130), 0,1, Scalar(0,0,255), 2);
+       
+   }
     
-    }
+}
 void car_detection()
 {
     if(!Car_Cascade.load("//home//pi//Code//machine//Object Model-1.xml"))
     {
 	printf("Unable to open Object cascade file");
     }
-ROI_car = frame_car(Rect(100,50,200,190));
+    ROI_car = frame_car(Rect(100,50,200,190));
    cvtColor(ROI_car, gray_car, COLOR_RGB2GRAY);
    equalizeHist(gray_car, gray_car);
    Car_Cascade.detectMultiScale(gray_car, car);
@@ -243,7 +268,7 @@ ROI_car = frame_car(Rect(100,50,200,190));
        
    }
     
-    }
+}
     
 void movements()
 {
